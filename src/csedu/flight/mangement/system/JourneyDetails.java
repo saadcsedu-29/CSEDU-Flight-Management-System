@@ -10,7 +10,7 @@ import net.proteanit.sql.DbUtils;
 
 public class JourneyDetails extends JFrame implements ActionListener{
     JTable table;
-    JTextField pnr;
+    JTextField id;
     JButton show;
     
     public JourneyDetails() {
@@ -18,15 +18,15 @@ public class JourneyDetails extends JFrame implements ActionListener{
         getContentPane().setBackground(Color.DARK_GRAY);
         setLayout(null);
         
-        JLabel lblpnr = new JLabel("PNR Details");
-        lblpnr.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        JLabel lblpnr = new JLabel("National ID");
+        lblpnr.setFont(new Font("Tahoma", Font.PLAIN, 20));
         lblpnr.setForeground(Color.YELLOW);
         lblpnr.setBounds(50, 50, 100, 25);
         add(lblpnr);
         
-        pnr = new JTextField();
-        pnr.setBounds(160, 50, 200, 30);
-        add(pnr);
+        id = new JTextField();
+        id.setBounds(160, 50, 200, 30);
+        add(id);
         
         show = new JButton("Show Details");
         show.setBackground(Color.GRAY);
@@ -50,7 +50,7 @@ public class JourneyDetails extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         try {
             Conn conn = new Conn();
-            ResultSet rs = conn.s.executeQuery("select * from reservation where PNR = '"+pnr.getText()+"'");
+            ResultSet rs = conn.s.executeQuery("select * from reservation where id = '"+id.getText()+"'");
             
             if (!rs.isBeforeFirst()) {
                 JOptionPane.showMessageDialog(null, "No Information Found");
